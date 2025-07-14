@@ -70,7 +70,7 @@ export interface Particle {
 export interface Obstacle {
   position: Vector2;
   size: Vector2;
-  type: 'spike' | 'laser' | 'saw' | 'ghost' | 'void';
+  type: 'spike' | 'laser' | 'saw' | 'ghost' | 'void' | 'fireball' | 'ice' | 'wind' | 'teleporter' | 'mirror';
   active: boolean;
   damage: number;
   pattern?: {
@@ -79,6 +79,9 @@ export interface Obstacle {
   };
   direction?: Vector2;
   speed?: number;
+  teleportTarget?: Vector2;
+  windForce?: Vector2;
+  freezeTimer?: number;
 }
 
 export interface Collectible {

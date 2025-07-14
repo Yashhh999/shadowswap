@@ -79,11 +79,12 @@ export class GameEngine {
         name: "Shadow Awakening",
         size: { x: 1600, y: 1200 },
         platforms: [
+          // Ground platform - full width
           { position: { x: 0, y: 1180 }, size: { x: 1600, y: 20 }, type: 'both', color: '#4a5568' },
           { position: { x: 200, y: 1100 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
-          { position: { x: 500, y: 900 }, size: { x: 200, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 500, y: 900 }, size: { x: 200, y: 20 }, type: 'shadow', color: '#7c3aed' },
           { position: { x: 800, y: 800 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' },
-          { position: { x: 1100, y: 700 }, size: { x: 200, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 1100, y: 700 }, size: { x: 200, y: 20 }, type: 'physical', color: '#2563eb' },
           { position: { x: 1400, y: 600 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' }
         ],
         obstacles: [],
@@ -318,6 +319,558 @@ export class GameEngine {
         requiredKeys: 4,
         difficulty: 'expert',
         specialMechanics: ['all_mechanics']
+      },
+
+      {
+        id: 6,
+        name: "Elemental Chaos",
+        size: { x: 4000, y: 2400 },
+        platforms: [
+          { position: { x: 0, y: 2380 }, size: { x: 4000, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 200, y: 2200 }, size: { x: 150, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 500, y: 2100 }, size: { x: 120, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 80 },
+          { 
+            position: { x: 800, y: 2000 }, 
+            size: { x: 100, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 800, y: 2000 },
+              end: { x: 1200, y: 1800 },
+              speed: 3,
+              direction: 1
+            }
+          },
+          { position: { x: 1400, y: 1900 }, size: { x: 100, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 1700, y: 1800 }, size: { x: 120, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 60 },
+          { 
+            position: { x: 2000, y: 1700 }, 
+            size: { x: 100, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 2000, y: 1700 },
+              end: { x: 2300, y: 1500 },
+              speed: 2.5,
+              direction: 1
+            }
+          },
+          { position: { x: 2500, y: 1600 }, size: { x: 150, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 2800, y: 1500 }, size: { x: 100, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 3100, y: 1400 }, size: { x: 120, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'elemental1' },
+          { position: { x: 3400, y: 1300 }, size: { x: 150, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 3700, y: 1200 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' }
+        ],
+        obstacles: [
+          { position: { x: 400, y: 2360 }, size: { x: 80, y: 20 }, type: 'fireball', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 3 },
+          { position: { x: 900, y: 1980 }, size: { x: 100, y: 100 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
+          { position: { x: 1500, y: 1880 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: 5, y: -2 } },
+          { position: { x: 2100, y: 1680 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 2.5 },
+          { position: { x: 2700, y: 1480 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 3200, y: 1380 } },
+          { position: { x: 3200, y: 1380 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 2700, y: 1480 } },
+          { position: { x: 3500, y: 1280 }, size: { x: 80, y: 80 }, type: 'mirror', active: true, damage: 0 }
+        ],
+        collectibles: [
+          { position: { x: 250, y: 2150 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 1450, y: 1850 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 2550, y: 1550 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 3150, y: 1350 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 3750, y: 1150 }, size: { x: 20, y: 20 }, type: 'powerup', collected: false, value: 1, effect: 'fire_resistance' }
+        ],
+        switches: [
+          { position: { x: 3150, y: 1370 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['elemental1'], type: 'toggle' }
+        ],
+        portal: { position: { x: 3800, y: 1150 }, size: { x: 40, y: 60 }, active: true, requiresKeys: true },
+        playerStart: { x: 50, y: 2300 },
+        background: 'linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%)',
+        timeLimit: 480,
+        requiredKeys: 4,
+        difficulty: 'expert',
+        specialMechanics: ['elemental_obstacles', 'teleporters']
+      },
+
+      {
+        id: 7,
+        name: "Gravity Defiance",
+        size: { x: 4800, y: 2800 },
+        platforms: [
+          { position: { x: 0, y: 2780 }, size: { x: 4800, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 150, y: 2600 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 400, y: 2500 }, size: { x: 100, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 45 },
+          { 
+            position: { x: 650, y: 2400 }, 
+            size: { x: 80, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 650, y: 2400 },
+              end: { x: 650, y: 2000 },
+              speed: 4,
+              direction: 1
+            }
+          },
+          { position: { x: 900, y: 2300 }, size: { x: 100, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 1200, y: 2200 }, size: { x: 80, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 30 },
+          { 
+            position: { x: 1450, y: 2100 }, 
+            size: { x: 100, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 1450, y: 2100 },
+              end: { x: 1800, y: 1900 },
+              speed: 3.5,
+              direction: 1
+            }
+          },
+          { position: { x: 2000, y: 2000 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 2300, y: 1900 }, size: { x: 100, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'gravity1' },
+          { position: { x: 2600, y: 1800 }, size: { x: 80, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 40 },
+          { 
+            position: { x: 2850, y: 1700 }, 
+            size: { x: 100, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 2850, y: 1700 },
+              end: { x: 3200, y: 1500 },
+              speed: 4,
+              direction: 1
+            }
+          },
+          { position: { x: 3400, y: 1600 }, size: { x: 120, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 3700, y: 1500 }, size: { x: 100, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 4000, y: 1400 }, size: { x: 120, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 50 },
+          { position: { x: 4300, y: 1300 }, size: { x: 150, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 4600, y: 1200 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' }
+        ],
+        obstacles: [
+          { position: { x: 300, y: 2760 }, size: { x: 80, y: 20 }, type: 'void', active: true, damage: 2 },
+          { position: { x: 750, y: 2380 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 2.5 },
+          { position: { x: 1100, y: 2180 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 1, direction: { x: 1, y: 1 }, speed: 3 },
+          { position: { x: 1600, y: 2080 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 1, pattern: { duration: 90, timer: 0 } },
+          { position: { x: 2150, y: 1980 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 4 },
+          { position: { x: 2500, y: 1880 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 3 },
+          { position: { x: 3000, y: 1680 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: -3, y: -4 } },
+          { position: { x: 3550, y: 1580 }, size: { x: 80, y: 80 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
+          { position: { x: 4150, y: 1380 }, size: { x: 80, y: 80 }, type: 'mirror', active: true, damage: 0 }
+        ],
+        collectibles: [
+          { position: { x: 200, y: 2550 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 950, y: 2250 }, size: { x: 20, y: 20 }, type: 'health', collected: false, value: 1 },
+          { position: { x: 1500, y: 2050 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 2050, y: 1950 }, size: { x: 20, y: 20 }, type: 'coin', collected: false, value: 300 },
+          { position: { x: 2900, y: 1650 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 3450, y: 1550 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 4050, y: 1350 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 4650, y: 1150 }, size: { x: 20, y: 20 }, type: 'powerup', collected: false, value: 1, effect: 'gravity_boots' }
+        ],
+        switches: [
+          { position: { x: 2350, y: 1870 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['gravity1'], type: 'timed', timer: 0, maxTimer: 240 }
+        ],
+        portal: { position: { x: 4700, y: 1150 }, size: { x: 40, y: 60 }, active: true, requiresKeys: true },
+        playerStart: { x: 50, y: 2700 },
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+        timeLimit: 540,
+        requiredKeys: 5,
+        difficulty: 'expert',
+        specialMechanics: ['gravity_zones', 'advanced_movement']
+      },
+
+      {
+        id: 8,
+        name: "Temporal Maze",
+        size: { x: 5600, y: 3200 },
+        platforms: [
+          { position: { x: 0, y: 3180 }, size: { x: 5600, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 200, y: 3000 }, size: { x: 100, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 450, y: 2900 }, size: { x: 80, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 25 },
+          { 
+            position: { x: 700, y: 2800 }, 
+            size: { x: 60, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 700, y: 2800 },
+              end: { x: 1000, y: 2600 },
+              speed: 5,
+              direction: 1
+            }
+          },
+          { position: { x: 1200, y: 2700 }, size: { x: 80, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 1450, y: 2600 }, size: { x: 60, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 20 },
+          { 
+            position: { x: 1700, y: 2500 }, 
+            size: { x: 80, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 1700, y: 2500 },
+              end: { x: 2000, y: 2300 },
+              speed: 4.5,
+              direction: 1
+            }
+          },
+          { position: { x: 2200, y: 2400 }, size: { x: 100, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'temporal1' },
+          { position: { x: 2500, y: 2300 }, size: { x: 80, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 2800, y: 2200 }, size: { x: 60, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 15 },
+          { 
+            position: { x: 3050, y: 2100 }, 
+            size: { x: 80, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 3050, y: 2100 },
+              end: { x: 3400, y: 1900 },
+              speed: 6,
+              direction: 1
+            }
+          },
+          { position: { x: 3600, y: 2000 }, size: { x: 100, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 3900, y: 1900 }, size: { x: 80, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'temporal2' },
+          { position: { x: 4200, y: 1800 }, size: { x: 60, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 30 },
+          { 
+            position: { x: 4450, y: 1700 }, 
+            size: { x: 80, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 4450, y: 1700 },
+              end: { x: 4800, y: 1500 },
+              speed: 5.5,
+              direction: 1
+            }
+          },
+          { position: { x: 5000, y: 1600 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 5300, y: 1500 }, size: { x: 150, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 5500, y: 1400 }, size: { x: 100, y: 20 }, type: 'both', color: '#4a5568' }
+        ],
+        obstacles: [
+          { position: { x: 350, y: 3160 }, size: { x: 80, y: 20 }, type: 'void', active: true, damage: 2 },
+          { position: { x: 600, y: 2880 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 5 },
+          { position: { x: 1100, y: 2680 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 4 },
+          { position: { x: 1600, y: 2480 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 2700, y: 2180 } },
+          { position: { x: 2700, y: 2180 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 1600, y: 2480 } },
+          { position: { x: 2400, y: 2380 }, size: { x: 80, y: 80 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
+          { position: { x: 3200, y: 2080 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 1, pattern: { duration: 60, timer: 0 } },
+          { position: { x: 3750, y: 1980 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: 4, y: -3 } },
+          { position: { x: 4350, y: 1780 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 1, direction: { x: -1, y: 1 }, speed: 4 }
+        ],
+        collectibles: [
+          { position: { x: 250, y: 2950 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 1250, y: 2650 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 2250, y: 2350 }, size: { x: 20, y: 20 }, type: 'health', collected: false, value: 1 },
+          { position: { x: 2550, y: 2250 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 3650, y: 1950 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 4500, y: 1650 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 5050, y: 1550 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 5550, y: 1350 }, size: { x: 20, y: 20 }, type: 'powerup', collected: false, value: 1, effect: 'time_slow' }
+        ],
+        switches: [
+          { position: { x: 2250, y: 2370 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['temporal1'], type: 'timed', timer: 0, maxTimer: 180 },
+          { position: { x: 3950, y: 1870 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['temporal2'], type: 'toggle' }
+        ],
+        portal: { position: { x: 5550, y: 1350 }, size: { x: 40, y: 60 }, active: true, requiresKeys: true },
+        playerStart: { x: 50, y: 3100 },
+        background: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%)',
+        timeLimit: 600,
+        requiredKeys: 6,
+        difficulty: 'expert',
+        specialMechanics: ['time_manipulation', 'complex_teleporters']
+      },
+
+      {
+        id: 9,
+        name: "Shadow Nexus",
+        size: { x: 6400, y: 3600 },
+        platforms: [
+          { position: { x: 0, y: 3580 }, size: { x: 6400, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 150, y: 3400 }, size: { x: 80, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 350, y: 3300 }, size: { x: 60, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 20 },
+          { 
+            position: { x: 550, y: 3200 }, 
+            size: { x: 50, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 550, y: 3200 },
+              end: { x: 800, y: 3000 },
+              speed: 6,
+              direction: 1
+            }
+          },
+          { position: { x: 1000, y: 3100 }, size: { x: 60, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 1250, y: 3000 }, size: { x: 50, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 15 },
+          { 
+            position: { x: 1450, y: 2900 }, 
+            size: { x: 60, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 1450, y: 2900 },
+              end: { x: 1700, y: 2700 },
+              speed: 7,
+              direction: 1
+            }
+          },
+          { position: { x: 1900, y: 2800 }, size: { x: 80, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'nexus1' },
+          { position: { x: 2200, y: 2700 }, size: { x: 60, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 2450, y: 2600 }, size: { x: 50, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 12 },
+          { 
+            position: { x: 2650, y: 2500 }, 
+            size: { x: 60, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 2650, y: 2500 },
+              end: { x: 2950, y: 2300 },
+              speed: 8,
+              direction: 1
+            }
+          },
+          { position: { x: 3150, y: 2400 }, size: { x: 80, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 3400, y: 2300 }, size: { x: 60, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'nexus2' },
+          { position: { x: 3650, y: 2200 }, size: { x: 50, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 18 },
+          { 
+            position: { x: 3850, y: 2100 }, 
+            size: { x: 60, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 3850, y: 2100 },
+              end: { x: 4150, y: 1900 },
+              speed: 6.5,
+              direction: 1
+            }
+          },
+          { position: { x: 4350, y: 2000 }, size: { x: 80, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 4600, y: 1900 }, size: { x: 60, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 4850, y: 1800 }, size: { x: 50, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 25 },
+          { 
+            position: { x: 5050, y: 1700 }, 
+            size: { x: 60, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 5050, y: 1700 },
+              end: { x: 5350, y: 1500 },
+              speed: 5.5,
+              direction: 1
+            }
+          },
+          { position: { x: 5550, y: 1600 }, size: { x: 100, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'nexus3' },
+          { position: { x: 5800, y: 1500 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 6100, y: 1400 }, size: { x: 150, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 6300, y: 1300 }, size: { x: 100, y: 20 }, type: 'both', color: '#4a5568' }
+        ],
+        obstacles: [
+          { position: { x: 250, y: 3560 }, size: { x: 80, y: 20 }, type: 'void', active: true, damage: 2 },
+          { position: { x: 500, y: 3280 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 5 },
+          { position: { x: 900, y: 3080 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 6 },
+          { position: { x: 1350, y: 2880 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 3000, y: 2280 } },
+          { position: { x: 3000, y: 2280 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 1350, y: 2880 } },
+          { position: { x: 1800, y: 2780 }, size: { x: 80, y: 80 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
+          { position: { x: 2350, y: 2580 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: -5, y: -2 } },
+          { position: { x: 2800, y: 2480 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 2, pattern: { duration: 45, timer: 0 } },
+          { position: { x: 3550, y: 2180 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 1, direction: { x: 1, y: -1 }, speed: 5 },
+          { position: { x: 4000, y: 2080 }, size: { x: 80, y: 80 }, type: 'mirror', active: true, damage: 0 },
+          { position: { x: 4500, y: 1980 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 4.5 },
+          { position: { x: 4950, y: 1780 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 7 },
+          { position: { x: 5700, y: 1580 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: 3, y: -4 } }
+        ],
+        collectibles: [
+          { position: { x: 200, y: 3350 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 1050, y: 3050 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 1950, y: 2750 }, size: { x: 20, y: 20 }, type: 'health', collected: false, value: 1 },
+          { position: { x: 2250, y: 2650 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 3200, y: 2350 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 4400, y: 1950 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 4650, y: 1850 }, size: { x: 20, y: 20 }, type: 'coin', collected: false, value: 500 },
+          { position: { x: 5600, y: 1550 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 5850, y: 1450 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 6350, y: 1250 }, size: { x: 20, y: 20 }, type: 'powerup', collected: false, value: 1, effect: 'shadow_mastery' }
+        ],
+        switches: [
+          { position: { x: 1950, y: 2770 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['nexus1'], type: 'timed', timer: 0, maxTimer: 150 },
+          { position: { x: 3450, y: 2270 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['nexus2'], type: 'toggle' },
+          { position: { x: 5600, y: 1570 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['nexus3'], type: 'pressure' }
+        ],
+        portal: { position: { x: 6350, y: 1250 }, size: { x: 40, y: 60 }, active: true, requiresKeys: true },
+        playerStart: { x: 50, y: 3500 },
+        background: 'linear-gradient(135deg, #2c3e50 0%, #4a6741 50%, #8e44ad 100%)',
+        timeLimit: 660,
+        requiredKeys: 7,
+        difficulty: 'expert',
+        specialMechanics: ['shadow_mastery', 'nexus_portals']
+      },
+
+      {
+        id: 10,
+        name: "The Ultimate Challenge",
+        size: { x: 8000, y: 4000 },
+        platforms: [
+          { position: { x: 0, y: 3980 }, size: { x: 8000, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 100, y: 3800 }, size: { x: 60, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 250, y: 3700 }, size: { x: 40, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 15 },
+          { 
+            position: { x: 400, y: 3600 }, 
+            size: { x: 40, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 400, y: 3600 },
+              end: { x: 600, y: 3400 },
+              speed: 8,
+              direction: 1
+            }
+          },
+          { position: { x: 750, y: 3500 }, size: { x: 50, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 900, y: 3400 }, size: { x: 40, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 10 },
+          { 
+            position: { x: 1050, y: 3300 }, 
+            size: { x: 50, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 1050, y: 3300 },
+              end: { x: 1300, y: 3100 },
+              speed: 9,
+              direction: 1
+            }
+          },
+          { position: { x: 1450, y: 3200 }, size: { x: 60, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'ultimate1' },
+          { position: { x: 1650, y: 3100 }, size: { x: 40, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 1800, y: 3000 }, size: { x: 40, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 8 },
+          { 
+            position: { x: 1950, y: 2900 }, 
+            size: { x: 50, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 1950, y: 2900 },
+              end: { x: 2200, y: 2700 },
+              speed: 10,
+              direction: 1
+            }
+          },
+          { position: { x: 2400, y: 2800 }, size: { x: 60, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 2600, y: 2700 }, size: { x: 50, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'ultimate2' },
+          { position: { x: 2800, y: 2600 }, size: { x: 40, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 12 },
+          { 
+            position: { x: 2950, y: 2500 }, 
+            size: { x: 50, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 2950, y: 2500 },
+              end: { x: 3250, y: 2300 },
+              speed: 9,
+              direction: 1
+            }
+          },
+          { position: { x: 3450, y: 2400 }, size: { x: 60, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 3650, y: 2300 }, size: { x: 40, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 3800, y: 2200 }, size: { x: 40, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 6 },
+          { 
+            position: { x: 3950, y: 2100 }, 
+            size: { x: 50, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 3950, y: 2100 },
+              end: { x: 4250, y: 1900 },
+              speed: 11,
+              direction: 1
+            }
+          },
+          { position: { x: 4450, y: 2000 }, size: { x: 60, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'ultimate3' },
+          { position: { x: 4650, y: 1900 }, size: { x: 50, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 4850, y: 1800 }, size: { x: 40, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 5 },
+          { 
+            position: { x: 5000, y: 1700 }, 
+            size: { x: 50, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 5000, y: 1700 },
+              end: { x: 5300, y: 1500 },
+              speed: 12,
+              direction: 1
+            }
+          },
+          { position: { x: 5500, y: 1600 }, size: { x: 60, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 5700, y: 1500 }, size: { x: 50, y: 20 }, type: 'switch', color: '#ed8936', switchState: false, id: 'ultimate4' },
+          { position: { x: 5900, y: 1400 }, size: { x: 40, y: 20 }, type: 'crumbling', color: '#e53e3e', crumbleTimer: 0, maxCrumbleTime: 4 },
+          { 
+            position: { x: 6050, y: 1300 }, 
+            size: { x: 50, y: 20 }, 
+            type: 'moving', 
+            color: '#38a169',
+            movementPattern: {
+              start: { x: 6050, y: 1300 },
+              end: { x: 6350, y: 1100 },
+              speed: 10,
+              direction: 1
+            }
+          },
+          { position: { x: 6550, y: 1200 }, size: { x: 80, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 6800, y: 1100 }, size: { x: 100, y: 20 }, type: 'shadow', color: '#805ad5' },
+          { position: { x: 7100, y: 1000 }, size: { x: 120, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x: 7400, y: 900 }, size: { x: 150, y: 20 }, type: 'both', color: '#4a5568' },
+          { position: { x:  7700, y: 800 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' }
+        ],
+        obstacles: [
+          { position: { x: 180, y: 3960 }, size: { x: 60, y: 20 }, type: 'void', active: true, damage: 3 },
+          { position: { x: 350, y: 3780 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 6 },
+          { position: { x: 700, y: 3580 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 8 },
+          { position: { x: 1000, y: 3380 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 2350, y: 2680 } },
+          { position: { x: 2350, y: 2680 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 1000, y: 3380 } },
+          { position: { x: 1350, y: 3180 }, size: { x: 80, y: 80 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
+          { position: { x: 1750, y: 2980 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: -6, y: -3 } },
+          { position: { x: 2150, y: 2880 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 2, pattern: { duration: 30, timer: 0 } },
+          { position: { x: 2550, y: 2680 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 2, direction: { x: 1, y: -1 }, speed: 6 },
+          { position: { x: 2900, y: 2580 }, size: { x: 80, y: 80 }, type: 'mirror', active: true, damage: 0 },
+          { position: { x: 3350, y: 2380 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 7 },
+          { position: { x: 3750, y: 2180 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 9 },
+          { position: { x: 4150, y: 2080 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: 4, y: -5 } },
+          { position: { x: 4550, y: 1980 }, size: { x: 80, y: 80 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
+          { position: { x: 4950, y: 1780 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 2, direction: { x: -1, y: 1 }, speed: 7 },
+          { position: { x: 5350, y: 1680 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 2, pattern: { duration: 25, timer: 0 } },
+          { position: { x: 5800, y: 1480 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: 1, y: 0 }, speed: 8 },
+          { position: { x: 6200, y: 1380 }, size: { x: 80, y: 80 }, type: 'fireball', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 10 },
+          { position: { x: 6650, y: 1180 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: 3, y: -6 } },
+          { position: { x: 7050, y: 980 }, size: { x: 80, y: 80 }, type: 'mirror', active: true, damage: 0 },
+          { position: { x: 7450, y: 880 }, size: { x: 80, y: 80 }, type: 'void', active: true, damage: 3 }
+        ],
+        collectibles: [
+          { position: { x: 150, y: 3750 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 800, y: 3450 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 1500, y: 3150 }, size: { x: 20, y: 20 }, type: 'health', collected: false, value: 1 },
+          { position: { x: 1700, y: 3050 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 2450, y: 2750 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 2650, y: 2650 }, size: { x: 20, y: 20 }, type: 'coin', collected: false, value: 1000 },
+          { position: { x: 3500, y: 2350 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 4500, y: 1950 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 4700, y: 1850 }, size: { x: 20, y: 20 }, type: 'health', collected: false, value: 1 },
+          { position: { x: 5550, y: 1550 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 5750, y: 1450 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 6600, y: 1150 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 6850, y: 1050 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
+          { position: { x: 7750, y: 750 }, size: { x: 20, y: 20 }, type: 'powerup', collected: false, value: 1, effect: 'ultimate_mastery' }
+        ],
+        switches: [
+          { position: { x: 1500, y: 3170 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['ultimate1'], type: 'timed', timer: 0, maxTimer: 120 },
+          { position: { x: 2650, y: 2670 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['ultimate2'], type: 'toggle' },
+          { position: { x: 4500, y: 1970 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['ultimate3'], type: 'pressure' },
+          { position: { x: 5750, y: 1470 }, size: { x: 30, y: 30 }, activated: false, targetPlatforms: ['ultimate4'], type: 'timed', timer: 0, maxTimer: 90 }
+        ],
+        portal: { position: { x: 7800, y: 750 }, size: { x: 40, y: 60 }, active: true, requiresKeys: true },
+        playerStart: { x: 50, y: 3900 },
+        background: 'linear-gradient(135deg, #000000 0%, #434343 25%, #ff6b6b 50%, #feca57 75%, #48dbfb 100%)',
+        timeLimit: 720,
+        requiredKeys: 10,
+        difficulty: 'expert',
+        specialMechanics: ['ultimate_challenge', 'all_advanced_mechanics']
       }
     ];
   }
@@ -350,6 +903,7 @@ export class GameEngine {
   }
 
   private performDash(): void {
+    // dash mechanics 
     const dashDirection = this.keys['d'] || this.keys['arrowright'] ? 1 : 
                          this.keys['a'] || this.keys['arrowleft'] ? -1 : 
                          this.player.velocity.x > 0 ? 1 : -1;
@@ -404,13 +958,32 @@ export class GameEngine {
     }
   }
 
+  private createTeleportParticles(): void {
+    for (let i = 0; i < 25; i++) {
+      this.particles.push({
+        position: {
+          x: this.player.position.x + this.player.size.x / 2 + (Math.random() - 0.5) * 60,
+          y: this.player.position.y + this.player.size.y / 2 + (Math.random() - 0.5) * 60
+        },
+        velocity: {
+          x: (Math.random() - 0.5) * 12,
+          y: (Math.random() - 0.5) * 12
+        },
+        life: 60,
+        maxLife: 60,
+        color: '#00ffff',
+        size: Math.random() * 6 + 3,
+        type: 'magic'
+      });
+    }
+  }
   private updatePlayer(deltaTime: number): void {
     if (this.player.dashCooldown > 0) this.player.dashCooldown--;
     if (this.player.invulnerable > 0) this.player.invulnerable--;
     if (this.player.wallJumpCooldown > 0) this.player.wallJumpCooldown--;
 
-    const moveSpeed = 0.8; //config
-    const maxSpeed = 7; //config
+    const moveSpeed = 0.8;
+    const maxSpeed = 7;
     
     if (this.keys['a'] || this.keys['arrowleft']) {
       this.player.velocity.x = Math.max(this.player.velocity.x - moveSpeed, -maxSpeed);
@@ -467,6 +1040,7 @@ export class GameEngine {
     if (this.player.position.y > this.currentLevel.size.y) {
       this.takeDamage(1);
     }
+
     if (this.player.grounded && this.player.dashCooldown <= 0) {
       this.player.canDash = true;
     }
@@ -568,7 +1142,7 @@ export class GameEngine {
         if (playerOnPlatform) {
           platform.crumbleTimer++;
           if (platform.crumbleTimer >= platform.maxCrumbleTime) {
-            platform.type = 'both';
+            platform.type = 'both'; 
             platform.color = '#666666';
           }
         }
@@ -604,6 +1178,56 @@ export class GameEngine {
         
         if (obstacle.position.x <= 0 || obstacle.position.x + obstacle.size.x >= this.currentLevel.size.x) {
           obstacle.direction.x *= -1;
+        }
+      }
+      
+      if (obstacle.type === 'fireball' && obstacle.direction && obstacle.speed) {
+        obstacle.position.x += obstacle.direction.x * obstacle.speed;
+        obstacle.position.y += obstacle.direction.y * obstacle.speed;
+        
+        if (obstacle.position.x <= 0 || obstacle.position.x + obstacle.size.x >= this.currentLevel.size.x) {
+          obstacle.direction.x *= -1;
+        }
+        if (obstacle.position.y <= 0 || obstacle.position.y + obstacle.size.y >= this.currentLevel.size.y) {
+          obstacle.direction.y *= -1;
+        }
+      }
+      
+      if (obstacle.type === 'wind' && obstacle.windForce) {
+        const distance = Math.sqrt(
+          Math.pow(this.player.position.x - obstacle.position.x, 2) + 
+          Math.pow(this.player.position.y - obstacle.position.y, 2)
+        );
+        if (distance < 150) {
+          this.player.velocity.x += obstacle.windForce.x * 0.1;
+          this.player.velocity.y += obstacle.windForce.y * 0.1;
+        }
+      }
+      
+      if (obstacle.type === 'ice' && obstacle.freezeTimer !== undefined) {
+        if (this.isColliding(this.player, obstacle)) {
+          obstacle.freezeTimer++;
+          if (obstacle.freezeTimer > 60) {
+            this.player.velocity.x *= 0.3;
+            this.player.velocity.y *= 0.3;
+          }
+        } else {
+          obstacle.freezeTimer = Math.max(0, obstacle.freezeTimer - 2);
+        }
+      }
+      
+      if (obstacle.type === 'teleporter' && obstacle.teleportTarget) {
+        if (this.isColliding(this.player, obstacle)) {
+          this.player.position.x = obstacle.teleportTarget.x;
+          this.player.position.y = obstacle.teleportTarget.y;
+          this.createTeleportParticles();
+        }
+      }
+      
+      if (obstacle.type === 'mirror') {
+        if (this.isColliding(this.player, obstacle)) {
+          this.toggleForm();
+          this.createFormSwitchParticles();
         }
       }
     }
@@ -799,6 +1423,7 @@ export class GameEngine {
     const portal = this.currentLevel.portal;
     if (portal.active && this.isColliding(this.player, portal)) {
       if (!portal.requiresKeys || this.gameState.keysCollected >= this.currentLevel.requiredKeys) {
+        // console.log('Portal activated!'); 
         this.nextLevel();
       }
     }
@@ -903,12 +1528,12 @@ export class GameEngine {
       this.gameState.timeRemaining--;
     } else {
       this.takeDamage(1);
-      this.gameState.timeRemaining = this.currentLevel.timeLimit;
+      this.gameState.timeRemaining = this.currentLevel.timeLimit; // reset timer
     }
   }
 
   private render(): void {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     
     this.ctx.save();
     this.ctx.translate(-this.camera.position.x, -this.camera.position.y);
@@ -941,7 +1566,6 @@ export class GameEngine {
         platform.size.y
       );
     }
-
     for (const obstacle of this.currentLevel.obstacles) {
       if (!obstacle.active && obstacle.type !== 'void') continue;
       
@@ -971,6 +1595,31 @@ export class GameEngine {
           this.ctx.fillStyle = '#000000';
           this.ctx.shadowBlur = 20;
           this.ctx.shadowColor = '#000000';
+          break;
+        case 'fireball':
+          this.ctx.fillStyle = '#ff4500';
+          this.ctx.shadowBlur = 15;
+          this.ctx.shadowColor = '#ff4500';
+          break;
+        case 'ice':
+          this.ctx.fillStyle = '#87ceeb';
+          this.ctx.shadowBlur = 10;
+          this.ctx.shadowColor = '#87ceeb';
+          break;
+        case 'wind':
+          this.ctx.fillStyle = '#e6f3ff';
+          this.ctx.shadowBlur = 8;
+          this.ctx.shadowColor = '#87ceeb';
+          break;
+        case 'teleporter':
+          this.ctx.fillStyle = '#00ffff';
+          this.ctx.shadowBlur = 20;
+          this.ctx.shadowColor = '#00ffff';
+          break;
+        case 'mirror':
+          this.ctx.fillStyle = '#c0c0c0';
+          this.ctx.shadowBlur = 12;
+          this.ctx.shadowColor = '#c0c0c0';
           break;
       }
       
@@ -1066,6 +1715,7 @@ export class GameEngine {
       this.player.size.y
     );
     this.ctx.restore();
+
     for (const particle of this.particles) {
       this.ctx.save();
       this.ctx.globalAlpha = particle.life / particle.maxLife;
@@ -1080,8 +1730,10 @@ export class GameEngine {
       );
       this.ctx.restore();
     }
+
     this.ctx.restore();
-        this.ctx.shadowBlur = 0;
+    
+    this.ctx.shadowBlur = 0;
   }
 
   private gameLoop = (currentTime: number): void => {
@@ -1097,7 +1749,8 @@ export class GameEngine {
     this.updateSwitches();
     this.updateParticles();
     this.updateCamera();
-        if (Math.floor(currentTime / 1000) !== Math.floor((currentTime - deltaTime) / 1000)) {
+    
+    if (Math.floor(currentTime / 1000) !== Math.floor((currentTime - deltaTime) / 1000)) {
       this.updateTimer();
     }
     

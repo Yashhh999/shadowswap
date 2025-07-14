@@ -50,6 +50,14 @@ export const Game: React.FC = () => {
                   <span className="w-4 h-4 bg-black rounded border border-white"></span>
                   <span>Void zones</span>
                 </div>
+                <div className="flex items-center space-x-2">
+                  <span className="w-4 h-4 bg-orange-500 rounded"></span>
+                  <span>Fireballs</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="w-4 h-4 bg-cyan-400 rounded"></span>
+                  <span>Ice & Wind zones</span>
+                </div>
               </div>
               <div className="space-y-2">
                 <h4 className="font-semibold text-green-400">Collectibles & Powers</h4>
@@ -69,12 +77,20 @@ export const Game: React.FC = () => {
                   <span className="w-4 h-4 bg-orange-500 rounded"></span>
                   <span>Switches</span>
                 </div>
+                <div className="flex items-center space-x-2">
+                  <span className="w-4 h-4 bg-cyan-500 rounded"></span>
+                  <span>Teleporters</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="w-4 h-4 bg-gray-400 rounded"></span>
+                  <span>Mirror blocks</span>
+                </div>
               </div>
             </div>
             <div className="mt-4 pt-4 border-t border-gray-600 text-center">
               <p className="text-gray-300">
-                <span className="font-semibold">New Features:</span> Double jumping, dash attacks, wall sliding, 
-                time limits, lives system, scoring, and 5 challenging levels!
+                <span className="font-semibold">Epic Features:</span> 10 massive levels, elemental obstacles, teleporters, 
+                wind/ice zones, mirror blocks, and ultimate challenges that will test every skill!
               </p>
             </div>
           </div>
