@@ -79,12 +79,11 @@ export class GameEngine {
         name: "Shadow Awakening",
         size: { x: 1600, y: 1200 },
         platforms: [
-          // Ground platform - full width
           { position: { x: 0, y: 1180 }, size: { x: 1600, y: 20 }, type: 'both', color: '#4a5568' },
           { position: { x: 200, y: 1100 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
-          { position: { x: 500, y: 900 }, size: { x: 200, y: 20 }, type: 'shadow', color: '#7c3aed' },
+          { position: { x: 500, y: 900 }, size: { x: 200, y: 20 }, type: 'shadow', color: '#805ad5' },
           { position: { x: 800, y: 800 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' },
-          { position: { x: 1100, y: 700 }, size: { x: 200, y: 20 }, type: 'physical', color: '#2563eb' },
+          { position: { x: 1100, y: 700 }, size: { x: 200, y: 20 }, type: 'physical', color: '#3182ce' },
           { position: { x: 1400, y: 600 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' }
         ],
         obstacles: [],
@@ -554,7 +553,8 @@ export class GameEngine {
           { position: { x: 2400, y: 2380 }, size: { x: 80, y: 80 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
           { position: { x: 3200, y: 2080 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 1, pattern: { duration: 60, timer: 0 } },
           { position: { x: 3750, y: 1980 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: 4, y: -3 } },
-          { position: { x: 4350, y: 1780 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 1, direction: { x: -1, y: 1 }, speed: 4 }
+          { position: { x: 4350, y: 1780 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 1, direction: { x: -1, y: 1 }, speed: 4 },
+          { position: { x: 5150, y: 1580 }, size: { x: 80, y: 80 }, type: 'mirror', active: true, damage: 0 }
         ],
         collectibles: [
           { position: { x: 250, y: 2950 }, size: { x: 20, y: 20 }, type: 'key', collected: false, value: 1 },
@@ -671,7 +671,7 @@ export class GameEngine {
           { position: { x: 3000, y: 2280 }, size: { x: 80, y: 80 }, type: 'teleporter', active: true, damage: 0, teleportTarget: { x: 1350, y: 2880 } },
           { position: { x: 1800, y: 2780 }, size: { x: 80, y: 80 }, type: 'ice', active: true, damage: 0, freezeTimer: 0 },
           { position: { x: 2350, y: 2580 }, size: { x: 80, y: 80 }, type: 'wind', active: true, damage: 0, windForce: { x: -5, y: -2 } },
-          { position: { x: 2800, y: 2480 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 2, pattern: { duration: 45, timer: 0 } },
+          { position: { x: 2800, y: 2480 }, size: { x: 100, y: 20 }, type: 'laser', active: false, damage: 1, pattern: { duration: 45, timer: 0 } },
           { position: { x: 3550, y: 2180 }, size: { x: 80, y: 80 }, type: 'saw', active: true, damage: 1, direction: { x: 1, y: -1 }, speed: 5 },
           { position: { x: 4000, y: 2080 }, size: { x: 80, y: 80 }, type: 'mirror', active: true, damage: 0 },
           { position: { x: 4500, y: 1980 }, size: { x: 80, y: 80 }, type: 'ghost', active: true, damage: 1, direction: { x: -1, y: 0 }, speed: 4.5 },
@@ -764,7 +764,7 @@ export class GameEngine {
             movementPattern: {
               start: { x: 2950, y: 2500 },
               end: { x: 3250, y: 2300 },
-              speed: 9,
+              speed: 8.5,
               direction: 1
             }
           },
@@ -817,7 +817,7 @@ export class GameEngine {
           { position: { x: 6800, y: 1100 }, size: { x: 100, y: 20 }, type: 'shadow', color: '#805ad5' },
           { position: { x: 7100, y: 1000 }, size: { x: 120, y: 20 }, type: 'both', color: '#4a5568' },
           { position: { x: 7400, y: 900 }, size: { x: 150, y: 20 }, type: 'both', color: '#4a5568' },
-          { position: { x:  7700, y: 800 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' }
+          { position: { x: 7700, y: 800 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' }
         ],
         obstacles: [
           { position: { x: 180, y: 3960 }, size: { x: 60, y: 20 }, type: 'void', active: true, damage: 3 },
@@ -903,7 +903,6 @@ export class GameEngine {
   }
 
   private performDash(): void {
-    // dash mechanics 
     const dashDirection = this.keys['d'] || this.keys['arrowright'] ? 1 : 
                          this.keys['a'] || this.keys['arrowleft'] ? -1 : 
                          this.player.velocity.x > 0 ? 1 : -1;
@@ -1423,7 +1422,6 @@ export class GameEngine {
     const portal = this.currentLevel.portal;
     if (portal.active && this.isColliding(this.player, portal)) {
       if (!portal.requiresKeys || this.gameState.keysCollected >= this.currentLevel.requiredKeys) {
-        // console.log('Portal activated!'); 
         this.nextLevel();
       }
     }
@@ -1528,12 +1526,12 @@ export class GameEngine {
       this.gameState.timeRemaining--;
     } else {
       this.takeDamage(1);
-      this.gameState.timeRemaining = this.currentLevel.timeLimit; // reset timer
+      this.gameState.timeRemaining = this.currentLevel.timeLimit;
     }
   }
 
   private render(): void {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     
     this.ctx.save();
     this.ctx.translate(-this.camera.position.x, -this.camera.position.y);
@@ -1566,6 +1564,7 @@ export class GameEngine {
         platform.size.y
       );
     }
+
     for (const obstacle of this.currentLevel.obstacles) {
       if (!obstacle.active && obstacle.type !== 'void') continue;
       
