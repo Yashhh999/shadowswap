@@ -80,7 +80,8 @@ export class GameEngine {
         size: { x: 1600, y: 1200 },
         platforms: [
           { position: { x: 0, y: 1180 }, size: { x: 1600, y: 20 }, type: 'both', color: '#4a5568' },
-          { position: { x: 200, y: 1100 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 180, y: 1100 }, size: { x: 120, y: 20 }, type: 'physical', color: '#3182ce' },
+          { position: { x: 350, y: 1000 }, size: { x: 150, y: 20 }, type: 'shadow', color: '#3182ce' },      
           { position: { x: 500, y: 900 }, size: { x: 200, y: 20 }, type: 'shadow', color: '#805ad5' },
           { position: { x: 800, y: 800 }, size: { x: 200, y: 20 }, type: 'both', color: '#4a5568' },
           { position: { x: 1100, y: 700 }, size: { x: 200, y: 20 }, type: 'physical', color: '#3182ce' },
