@@ -244,7 +244,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({ width, height }) => {
           <div><span className="font-bold text-blue-400">WASD/Arrows:</span> Move</div>
           <div><span className="font-bold text-purple-400">Space:</span> Switch Form</div>
           <div><span className="font-bold text-yellow-400">X:</span> Dash</div>
-          <div><span className="font-bold text-green-400">W (double):</span> Double Jump</div>
+          <div><span className="font-bold text-green-400">W</span> Jump</div>
           <div><span className="font-bold text-red-400">Wall Slide:</span> Auto</div>
           <div><span className="font-bold text-cyan-400">F11:</span> Fullscreen</div>
         </div>
@@ -327,7 +327,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({ width, height }) => {
               </div>
             </div>
             <div className="text-xs text-gray-400 mb-4">
-              Features: Double jump, dash ability, wall sliding, moving platforms, crumbling floors
+              Features: dash ability, wall sliding, moving platforms, crumbling floors
             </div>
             <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
               <button
@@ -464,7 +464,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = ({ width, height }) => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-300">
                 <div className="text-center">
                   <div className="text-purple-400 font-semibold">• Form Switching</div>
-                  <div className="text-blue-400 font-semibold">• Double Jumping</div>
+                  <div className="text-blue-400 font-semibold">• Jumping</div>
                 </div>
                 <div className="text-center">
                   <div className="text-yellow-400 font-semibold">• Dash Attacks</div>
